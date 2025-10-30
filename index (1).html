@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>単位変換ツール（US⇄日本）完全版</title>
+<style>
+  :root {
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --text: #222;
+    --sub: #666;
+    --accent: #2563eb;
+    --muted: #eef2ff;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, #fafbfd, #f2f5fb);
+  }
+  header {
+    padding: 28px 16px 8px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 1.4rem;
+    letter-spacing: .02em;
+  }
+  header p {
+    margin: 0;
+    color: var(--sub);
+    font-size: .95rem;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 18px auto 36px;
+    padding: 0 14px 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(20, 34, 68, .08);
+    padding: 18px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 10px;
+    align-items: end;
+    margin: 10px 0 0;
+  }
+  .label {
+    font-size: .9rem;
+    color: var(--sub);
+    margin-bottom: 6px;
+  }
+  .unit {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 16px;
+    background: #fff;
+    outline: none;
+  }
+  input::placeholder { color: #9aa3b2; }
+  .sym {
+    display: grid;
+    place-items: center;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--muted);
+    color: var(--accent);
+    font-weight: 700;
+    user-select: none;
+  }
+  .hint {
+    margin-top: 10px;
+    color: var(--sub);
+    font-size: .85rem;
+  }
+  footer {
+    text-align: center;
+    color: var(--sub);
+    padding: 18px 0 28px;
+    font-size: .85rem;
+  }
+  .mini {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 14px;
+    margin-top: 12px;
+    color: var(--sub);
+    font-size: .85rem;
+  }
+  @media (min-width: 680px) {
+    .wrap { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>単位変換ツール</h1>
+    <p>ポンド・キロ・インチ・センチ・フィート・マイル・華氏⇄摂氏対応</p>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="label">⚖️ 重さ</div>
+      <div class="row">
+        <div><div class="unit">ポンド (lb)</div><input id="lb" type="number" step="any" placeholder="例: 150"></div>
+        <div class="sym">⇄</div>
+        <div><div class="unit">キログラム (kg)</div><input id="kg" type="number" step="any" placeholder="例: 68.04"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">📏 長さ（インチ/センチ）</div>
+      <div class="row">
+        <div><div class="unit">インチ (in)</div><input id="inch" type="number" step="any" placeholder="例: 10"></div>
+        <div class="sym">⇄</div>
+        <div><div class="unit">センチ (cm)</div><input id="cm" type="number" step="any" placeholder="例: 25.4"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">📐 長さ（フィート/センチ）</div>
+      <div class="row">
+        <div><div class="unit">フィート (ft)</div><input id="ft" type="number" step="any" placeholder="例: 5.5"></div>
+        <div class="sym">⇄</div>
+        <div><div class="unit">センチ (cm)</div><input id="ft_cm" type="number" step="any" placeholder="例: 167.64"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">🛣️ 距離（マイル/キロ）</div>
+      <div class="row">
+        <div><div class="unit">マイル (mi)</div><input id="mi" type="number" step="any" placeholder="例: 26.2"></div>
+        <div class="sym">⇄</div>
+        <div><div class="unit">キロメートル (km)</div><input id="km" type="number" step="any" placeholder="例: 42.195"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">🌡️ 温度（華氏/摂氏）</div>
+      <div class="row">
+        <div><div class="unit">華氏 (°F)</div><input id="fahrenheit" type="number" step="any" placeholder="例: 77"></div>
+        <div class="sym">⇄</div>
+        <div><div class="unit">摂氏 (°C)</div><input id="celsius" type="number" step="any" placeholder="例: 25"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>オフライン対応／入力すると自動で相互変換されます</footer>
+
+<script>
+(() => {
+  const LB_TO_KG = 0.45359237;
+  const IN_TO_CM = 2.54;
+  const FT_TO_CM = 30.48;
+  const MI_TO_KM = 1.609344;
+
+  function format(v,d=6){return isFinite(v)?Number(v).toFixed(d).replace(/\.?0+$/,""):"";}
+  function toNum(s){if(typeof s!=="string")s=String(s??"");s=s.replace(/,/g,"").replace(/[０-９．－]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0xFEE0));const v=parseFloat(s);return isNaN(v)?null:v;}
+  function bindPair(l,r,l2r,r2l,d1=6,d2=6){
+    let up=false;
+    l.addEventListener("input",()=>{if(up)return;up=true;const v=toNum(l.value);r.value=v==null?"":format(l2r(v),d2);up=false;});
+    r.addEventListener("input",()=>{if(up)return;up=true;const v=toNum(r.value);l.value=v==null?"":format(r2l(v),d1);up=false;});
+  }
+
+  bindPair(lb,kg,v=>v*LB_TO_KG,v=>v/LB_TO_KG);
+  bindPair(inch,cm,v=>v*IN_TO_CM,v=>v/IN_TO_CM,6,4);
+  bindPair(ft,ft_cm,v=>v*FT_TO_CM,v=>v/FT_TO_CM,6,4);
+  bindPair(mi,km,v=>v*MI_TO_KM,v=>v/MI_TO_KM);
+  bindPair(fahrenheit,celsius,v=>(v-32)*5/9,v=>(v*9/5)+32,2,2);
+})();
+</script>
+</body>
+</html>
